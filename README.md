@@ -11,8 +11,10 @@
 * [CY3684 EZ-USB FX2LP Development Kit](http://www.cypress.com/documentation/development-kitsboards/cy3684-ez-usb-fx2lp-development-kit)
 * [EZ-USB® Technical Reference Manual](http://www.cypress.com/documentation/technical-reference-manuals/ez-usb-technical-reference-manual)
 * [SuiteUSB 3.4 - USB Development tools for Visual Studio](http://www.cypress.com/documentation/software-and-drivers/suiteusb-34-usb-development-tools-visual-studio)
+* [Drivers for EZ-USB® FX1™, FX2LP™ , and FX3 - KBA94413](https://community.cypress.com/docs/DOC-12366)
 
 ## 笔记文档
 
+* [0003_Quick_Start.md](docs/0003_Quick_Start.md)
 * [0002_EZ-USB_Integrated_Microprocessor.md](docs/0002_EZ-USB_Integrated_Microprocessor.md)
 * [0001_USB_Specification.md](docs/0001_USB_Specification.md)
