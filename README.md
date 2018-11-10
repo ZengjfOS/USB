@@ -15,6 +15,7 @@
 
 ## 笔记文档
 
+* [0004_Capturing_USB_Traffic.md](docs/0004_Capturing_USB_Traffic.md)
 * [0003_Quick_Start.md](docs/0003_Quick_Start.md)
 * [0002_EZ-USB_Integrated_Microprocessor.md](docs/0002_EZ-USB_Integrated_Microprocessor.md)
 * [0001_USB_Specification.md](docs/0001_USB_Specification.md)
