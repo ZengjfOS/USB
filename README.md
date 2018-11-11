@@ -12,9 +12,15 @@
 * [EZ-USB® Technical Reference Manual](http://www.cypress.com/documentation/technical-reference-manuals/ez-usb-technical-reference-manual)
 * [SuiteUSB 3.4 - USB Development tools for Visual Studio](http://www.cypress.com/documentation/software-and-drivers/suiteusb-34-usb-development-tools-visual-studio)
 * [Drivers for EZ-USB® FX1™, FX2LP™ , and FX3 - KBA94413](https://community.cypress.com/docs/DOC-12366)
+* [USB Hi-Speed Code Examples](http://www.cypress.com/documentation/code-examples/usb-hi-speed-code-examples)
+
+## 开发工具、示例
+
+[CY3684 EZ-USB FX2LP DVK Setup (Kit Design Files, Kiel IDE,GPIF Designer, Host applications, Documentation, Examples)](http://www.cypress.com/file/135301)
 
 ## 笔记文档
 
+* [0005_Wireshark_GET_DESCRIPTOR_Analyzer.md](docs/0005_Wireshark_GET_DESCRIPTOR_Analyzer.md)
 * [0004_Capturing_USB_Traffic.md](docs/0004_Capturing_USB_Traffic.md)
 * [0003_Quick_Start.md](docs/0003_Quick_Start.md)
 * [0002_EZ-USB_Integrated_Microprocessor.md](docs/0002_EZ-USB_Integrated_Microprocessor.md)
