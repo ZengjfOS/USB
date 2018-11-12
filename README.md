@@ -20,6 +20,7 @@
 
 ## 笔记文档
 
+* [0006_CY3684_EZ-USB_FX2LP_DVK.md](docs/0006_CY3684_EZ-USB_FX2LP_DVK.md)
 * [0005_Wireshark_GET_DESCRIPTOR_Analyzer.md](docs/0005_Wireshark_GET_DESCRIPTOR_Analyzer.md)
 * [0004_Capturing_USB_Traffic.md](docs/0004_Capturing_USB_Traffic.md)
 * [0003_Quick_Start.md](docs/0003_Quick_Start.md)
