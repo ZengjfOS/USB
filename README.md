@@ -4,7 +4,7 @@
 
 ## 参考文档
 
-* [EZ-USB FX2LP CY7C68013A USB核心板开发板 逻辑分析仪](https://item.taobao.com/item.htm?spm=a1z0d.7625083.1998302281.1.5c5f4e69A9fTe6&id=544016855376&scm=1007.12897.93149.100200300000000&pvid=ee1c4db2-18f0-44a6-a896-39ee3e996147)
+* [EZ-USB FX2LP CY7C68013A USB 开发板 逻辑分析仪YourCee](https://item.taobao.com/item.htm?spm=a230r.1.14.34.36aa2429c1z3Fr&id=522553287560&ns=1&abbucket=6#detail)
 * [CY7C68013A-56PVXC](http://www.cypress.com/part/cy7c68013a-56pvxc)
 * [AN65209 - Getting Started with FX2LP™](http://www.cypress.com/documentation/application-notes/an65209-getting-started-fx2lp)
 * [AN65209 Getting Started with FX2LP(Chinese).pdf](http://www.cypress.com/file/44946/download)
@@ -20,6 +20,7 @@
 
 ## 笔记文档
 
+* [0007_Bulkloop_Example.md](docs/0007_Bulkloop_Example.md)
 * [0006_CY3684_EZ-USB_FX2LP_DVK.md](docs/0006_CY3684_EZ-USB_FX2LP_DVK.md)
 * [0005_Wireshark_GET_DESCRIPTOR_Analyzer.md](docs/0005_Wireshark_GET_DESCRIPTOR_Analyzer.md)
 * [0004_Capturing_USB_Traffic.md](docs/0004_Capturing_USB_Traffic.md)
