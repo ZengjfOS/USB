@@ -328,8 +328,8 @@
 
 void TD_Init(void)             // Called once at startup
 {
-   BYTE dum;					// For the LEDS
-   CPUCS = ((CPUCS & ~bmCLKSPD) | bmCLKSPD1) ;	// 48 MHz CPU clock
+   BYTE dum;                    // For the LEDS
+   CPUCS = ((CPUCS & ~bmCLKSPD) | bmCLKSPD1) ;    // 48 MHz CPU clock
    
    
    // Turn off all 4 LEDS
@@ -339,37 +339,37 @@ void TD_Init(void)             // Called once at startup
    dum = D5OFF;
 
 // EP2CFG & EP6CFG configure our two endpoints, EP2-OUT and EP6-IN
-// b7:		Valid
-// b6:		DIR (0=OUT, 1=IN)
-// b[5:4]	Type (01=ISO, 10=BULK, 11=INT)
-// b3:		Size (0=512, 1=1024 bytes)
-// b2:		0
-// b[1:0]	Buffering (00=quad, 10=double, 11=triple)		
+// b7:        Valid
+// b6:        DIR (0=OUT, 1=IN)
+// b[5:4]    Type (01=ISO, 10=BULK, 11=INT)
+// b3:        Size (0=512, 1=1024 bytes)
+// b2:        0
+// b[1:0]    Buffering (00=quad, 10=double, 11=triple)        
 //
 
-  EP2CFG = 0xA2;	// Valid, BULK-OUT, 512 byte buffer, double-buffered
-  SYNCDELAY;		// Some regs take longer to update, see TRM Section 15.14.                    
-  EP6CFG = 0xE2;	// Valid, BULK-IN, 512 byte buffer, double-buffered
+  EP2CFG = 0xA2;    // Valid, BULK-OUT, 512 byte buffer, double-buffered
+  SYNCDELAY;        // Some regs take longer to update, see TRM Section 15.14.                    
+  EP6CFG = 0xE2;    // Valid, BULK-IN, 512 byte buffer, double-buffered
   SYNCDELAY;                    
 
   // OUT endpoints do not come up armed
   // Since the endpoint is double buffered we must write dummy byte counts twice
-  EP2BCL = 0x80;  	// arm EP2OUT by writing byte count w/skip.
+  EP2BCL = 0x80;      // arm EP2OUT by writing byte count w/skip.
   SYNCDELAY;                    
-  EP2BCL = 0x80;	// again
+  EP2BCL = 0x80;    // again
   SYNCDELAY;                    
   // enable dual autopointer feature
   AUTOPTRSETUP |= 0x01;
 
-  USBIE |= bmSOF;				// Enable the SOF IRQ to serve as LED timers
-  EPIE = bmEP6IRQ | bmEP2IRQ;	// Enable EP6 and EP2 Interrupts to turn on transfer LEDS
+  USBIE |= bmSOF;                // Enable the SOF IRQ to serve as LED timers
+  EPIE = bmEP6IRQ | bmEP2IRQ;    // Enable EP6 and EP2 Interrupts to turn on transfer LEDS
 }
 
 void TD_Poll(void)              // Called repeatedly while the device is idle
 {
   WORD i;
   WORD count;
-//  BYTE dummy_LED2;		// ***For the LED
+//  BYTE dummy_LED2;        // ***For the LED
   BYTE waiting_inpkts;
 
 #ifdef ENABLE_7_SEG_DISPLAY
@@ -388,22 +388,22 @@ if(start_7_seg_display)
 // available buffer. Using the flags this way handles any packet size and takes multiple buffering
 // into account.   
 
-	if(!(EP2468STAT & bmEP2EMPTY))		// Is EP2-OUT buffer not empty (has at least one packet)?
-	{
-		if(!(EP2468STAT & bmEP6FULL))	// YES: Is EP6-IN buffer not full (room for at least 1 pkt)?
-     	{ 
-		/*
-		#define AUTOPTR1H AUTOPTRH1 // for backwards compatibility with examples
-		#define AUTOPTR1L AUTOPTRL1 // for backwards compatibility with examples
-		#define APTR1H AUTOPTRH1 // for backwards compatibility with examples
-		#define APTR1L AUTOPTRL1 // for backwards compatibility with examples
-			
-		// this is how they are defined in the TRM
-		sfr AUTOPTRH1     = 0x9A; 
-		sfr AUTOPTRL1     = 0x9B; 
-		sfr AUTOPTRH2     = 0x9D;
-		sfr AUTOPTRL2     = 0x9E; 
-		*/
+    if(!(EP2468STAT & bmEP2EMPTY))        // Is EP2-OUT buffer not empty (has at least one packet)?
+    {
+        if(!(EP2468STAT & bmEP6FULL))    // YES: Is EP6-IN buffer not full (room for at least 1 pkt)?
+         { 
+        /*
+        #define AUTOPTR1H AUTOPTRH1 // for backwards compatibility with examples
+        #define AUTOPTR1L AUTOPTRL1 // for backwards compatibility with examples
+        #define APTR1H AUTOPTRH1 // for backwards compatibility with examples
+        #define APTR1L AUTOPTRL1 // for backwards compatibility with examples
+            
+        // this is how they are defined in the TRM
+        sfr AUTOPTRH1     = 0x9A; 
+        sfr AUTOPTRL1     = 0x9B; 
+        sfr AUTOPTRH2     = 0x9D;
+        sfr AUTOPTRL2     = 0x9E; 
+        */
         APTR1H = MSB( &EP2FIFOBUF );
         APTR1L = LSB( &EP2FIFOBUF );
         AUTOPTRH2 = MSB( &EP6FIFOBUF );
@@ -421,9 +421,9 @@ if(start_7_seg_display)
             #define EXTAUTODAT1 XAUTODAT1
             #define EXTAUTODAT2 XAUTODAT2
             */
-            EXTAUTODAT2 = EXTAUTODAT1;	// Autopointers make block transfers easy...
+            EXTAUTODAT2 = EXTAUTODAT1;    // Autopointers make block transfers easy...
         }
-        EP6BCH = EP2BCH;		// Send the same number of bytes as received  
+        EP6BCH = EP2BCH;        // Send the same number of bytes as received  
         SYNCDELAY;  
         EP6BCL = EP2BCL;        // arm EP6IN
         SYNCDELAY;                    
