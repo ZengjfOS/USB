@@ -20,6 +20,7 @@
 
 ## 笔记文档
 
+* [0010_HID_Keyboard_Modify.md](docs/0010_HID_Keyboard_Modify.md)
 * [0009_Wireshare_Filter.md](docs/0009_Wireshare_Filter.md)
 * [0008_HID_Keyboard.md](docs/0008_HID_Keyboard.md)
 * [0007_Bulkloop_Example.md](docs/0007_Bulkloop_Example.md)
