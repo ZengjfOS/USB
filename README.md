@@ -20,6 +20,7 @@
 
 ## 笔记文档
 
+* [0012_CYStream_Compile.md](docs/0012_CYStream_Compile.md)
 * [0011_HID_Compliant_Device.md](docs/0011_HID_Compliant_Device.md)
 * [0010_HID_Keyboard_Modify.md](docs/0010_HID_Keyboard_Modify.md)
 * [0009_Wireshare_Filter.md](docs/0009_Wireshare_Filter.md)
