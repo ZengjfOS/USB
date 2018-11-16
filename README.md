@@ -20,6 +20,7 @@
 
 ## 笔记文档
 
+* [0014_Why_StreamExample_Always_Select_Alt6.md](docs/0014_Why_StreamExample_Always_Select_Alt6.md)
 * [0013_USB_Descriptors_AlternateSetting.md](docs/0013_USB_Descriptors_AlternateSetting.md)
 * [0012_CYStream_Compile.md](docs/0012_CYStream_Compile.md)
 * [0011_HID_Compliant_Device.md](docs/0011_HID_Compliant_Device.md)
