@@ -13,6 +13,7 @@
 * [SuiteUSB 3.4 - USB Development tools for Visual Studio](http://www.cypress.com/documentation/software-and-drivers/suiteusb-34-usb-development-tools-visual-studio)
 * [Drivers for EZ-USB® FX1™, FX2LP™ , and FX3 - KBA94413](https://community.cypress.com/docs/DOC-12366)
 * [USB Hi-Speed Code Examples](http://www.cypress.com/documentation/code-examples/usb-hi-speed-code-examples)
+* [USB Type-C™ and Power Delivery Minidock With Video and Charging Support Reference Design](http://www.ti.com/tool/TIDA-01243?tdsourcetag=s_pcqq_aiomsg)
 
 ## 开发工具、示例
 
@@ -20,6 +21,7 @@
 
 ## 笔记文档
 
+* [0017_Type-C.md](docs/0017_Type-C.md)
 * [0016_Isochronous_Transfers.md](docs/0016_Isochronous_Transfers.md)
 * [0015_Send_Setup_Packet.md](docs/0015_Send_Setup_Packet.md)
 * [0014_Why_StreamExample_Always_Select_Alt6.md](docs/0014_Why_StreamExample_Always_Select_Alt6.md)
