@@ -19,6 +19,10 @@
 
 [CY3684 EZ-USB FX2LP DVK Setup (Kit Design Files, Kiel IDE,GPIF Designer, Host applications, Documentation, Examples)](http://www.cypress.com/file/135301)
 
+## Schematic
+
+![docs/images/CY7C68013A_Schematic.png](docs/images/CY7C68013A_Schematic.png)
+
 ## 笔记文档
 
 * [0017_Type-C.md](docs/0017_Type-C.md)
