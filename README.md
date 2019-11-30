@@ -25,6 +25,8 @@
 
 ## 笔记文档
 
+* [0019_Linux_Compile.md](docs/0019_Linux_Compile.md)
+* [0018_CY7C68013A_FPGA.md](docs/0018_CY7C68013A_FPGA.md)
 * [0017_Type-C.md](docs/0017_Type-C.md)
 * [0016_Isochronous_Transfers.md](docs/0016_Isochronous_Transfers.md)
 * [0015_Send_Setup_Packet.md](docs/0015_Send_Setup_Packet.md)
