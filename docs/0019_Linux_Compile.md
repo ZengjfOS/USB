@@ -34,3 +34,20 @@ dscr.rel  DSLogic.fw  DSLogic.map  Makefile.am
 pi@raspberrypi:~/zengjf/DSLogic-fw $ ls -alh hw/DSLogic.fw
 -rw-r--r-- 1 pi pi 8.0K Nov 30 08:42 hw/DSLogic.fw
 ```
+
+## 反汇编
+
+* 安装dis51
+  * http://plit.de/asem-51/dis51.html
+    * http://plit.de/asem-51/dis51-0.5.tar.gz
+    * wget http://plit.de/asem-51/dis51-0.5.tar.gz
+    * tar xvf dis51-0.5.tar.gz
+    * make
+  * sudo apt-get install dis51
+* packihx DSLogic.ihx > DSLogic.hex
+* 反汇编：
+  * cat DSLogic.hex | dis51 > DSLogic.a51
+  * cat DSLogic.hex | dis51 0x80 0x00 > DSLogic.a51
+    * CSEG：code segment
+    * LJMP：The LJMP instruction transfers program execution to the specified 16-bit address. 
+    * DB：The DB statement initializes memory with one or more byte values. label is a symbol that is assigned the current memory address. expression is a byte value that is stored in memory. Each expression may be a symbol, a string, or an expression.
