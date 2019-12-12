@@ -30,8 +30,8 @@
 *.hex
 *.h86
 *.lib
-*.obj
 *.o
+*obj
 *.sbr
 
 # Build files
@@ -80,3 +80,6 @@
 
 *.Bak
 *.iic
+!Target/Lib/LP/USBJmpTb.OBJ
+!Target/Lib/LP/EZUSB.LIB
+hid_kb
