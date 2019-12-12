@@ -207,7 +207,8 @@ StringDscr2End:
 
 HIDReportDscr:
 	db 05h, 01h     ; Usage Page (Generic Desktop)
-	db 09h, 06h     ; Usage (Keyboard)
+	;db 09h, 06h     ; Usage (Keyboard)
+    db 09h, 00h    ;    Usage (undefine)
 	db 0A1h, 01h     ; Collection (Application)
 	db 05h, 07h     ;       Usage Page (Key codes)
 	db 19h, 0E0h	;	Usage minimum (234)

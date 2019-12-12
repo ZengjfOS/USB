@@ -120,6 +120,8 @@ void TD_Poll(void)             // Called repeatedly while the device is idle
 		if (EP1OUTBUF[0] & 0x04)	//Num
 			leds &= 0xFE;
 
+        PA7 = ~PA7;
+
 		EP1OUTBC = 0;				//Rearm endpoint buffer
 	}
 }
