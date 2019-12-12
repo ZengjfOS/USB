@@ -67,7 +67,7 @@ BYTE   AlternateSetting;   // Alternate settings
 void TD_Init(void)             // Called once at startup
 {
    leds = 0xFF;
-   oldbuttons = 0xFF;
+   oldbuttons = 0x01;
 
    EP1OUTCFG = 0xB0;       // valid, interrupt
    EP1INCFG = 0XB0;        // valid, interrupt
@@ -87,35 +87,26 @@ void TD_Poll(void)             // Called repeatedly while the device is idle
    if( !(EP1INCS & bmEPBUSY) )	// Is the IN1BUF available,
    {
       buttons = PA6;	// Read button states
-      // buttons &= 0x0F;
+	  buttons &= 0x01;
       if ((oldbuttons - buttons) != 0)	//Change in button state
 	  {
-         if (buttons & 1)	//Shift
-            EP1INBUF[0] = 0;
-         else
-            EP1INBUF[0] = 4;
+         EP1INBUF[0] = 0;
 
-         if (buttons & 2)	//a
+         if (buttons & 1)	//a
+			EP1INBUF[2] = 4;
+         else
             EP1INBUF[2] = 0;
-         else
-            EP1INBUF[2] = 4;
 
-         if (buttons & 4)	//b
-            EP1INBUF[3] = 0;
-         else
-            EP1INBUF[3] = 5;
+		 EP1INBUF[3] = 0;
+         EP1INBUF[4] = 0;
 
-         if (buttons & 8)	//c
-            EP1INBUF[4] = 0;
-         else
-            EP1INBUF[4] = 6;
+		 EP1INBUF[1] = 0;
+		 EP1INBC = 5;
 
-			EP1INBUF[1] = 0;
-			EP1INBC = 5;
+			
+	  	 PA7 = PA6;
       }
       oldbuttons = buttons;
-
-	  PA7 = PA6;
    }
 
 	if( !(EP1OUTCS & bmEPBUSY) )	// Is there something available
@@ -128,9 +119,6 @@ void TD_Poll(void)             // Called repeatedly while the device is idle
 			leds &= 0xF7;
 		if (EP1OUTBUF[0] & 0x04)	//Num
 			leds &= 0xFE;
-
-      // EZUSB_WriteI2C(LED_ADDR, 0x01, &leds);
-      // EZUSB_WaitForEEPROMWrite(LED_ADDR);
 
 		EP1OUTBC = 0;				//Rearm endpoint buffer
 	}
