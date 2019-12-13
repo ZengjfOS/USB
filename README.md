@@ -26,7 +26,7 @@
 ## 笔记文档
 
 * [0021_GPIF.md](docs/0021_GPIF.md)
-* [0020_Keil_Shortcut.md](docs/0020_Keil_Shortcut.md)
+* [0020_Keil.md](docs/0020_Keil.md)
 * [0019_Linux_Compile.md](docs/0019_Linux_Compile.md)
 * [0018_CY7C68013A_FPGA.md](docs/0018_CY7C68013A_FPGA.md)
 * [0017_Type-C.md](docs/0017_Type-C.md)

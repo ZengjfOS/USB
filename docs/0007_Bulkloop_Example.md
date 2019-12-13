@@ -13,6 +13,7 @@
   EZUSB_WaitForEEPROMWrite(LED_ADDR);
   ```
 * [Absolute Variable Location](http://www.keil.com/support/man/docs/c51/c51_le_absvarloc.htm)
+* [EZ-USB® FX2LP™中的中断处理](https://www.cypress.com/file/202956/download)
 
 ## 修改源代码
 

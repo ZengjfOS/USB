@@ -10,6 +10,7 @@
 * [./refers/USB_HID_Keyboard_Firmware.pdf](./refers/USB_HID_Keyboard_Firmware.pdf)
 * [Tutorial about USB HID Report Descriptors](https://eleccelerator.com/tutorial-about-usb-hid-report-descriptors/)
 * [关于USBHID协议以及鼠标键盘描述符的解释](https://blog.csdn.net/jiujiujiuqiuqiuqiu/article/details/47277685)
+* [USB HID Keyboard Firmware Using EZ-USB® FX2LPTM](https://www.cypress.com/file/103181/download)
 
 ## 报告描述符生成器
 
