@@ -1,5 +1,13 @@
 # CYStream Compile
 
+## 参考文档
+
+* [在EZ-USB® FX2™和FX2LP™上测试同步或批量端点的数据流](https://www.cypress.com/file/139356/download)
+
+## 代码架构
+
+![images/CYStream_Code_Arch.png](images/CYStream_Code_Arch.png)
+
 ## 错误及解决方法
 
 * Error：
