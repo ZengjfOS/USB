@@ -100,7 +100,7 @@ void TD_Init(void)             // Called once at startup
    mycount = 0;
 
    // Prepare data
-   for (i=1;i<5;i++)
+   for (i=2;i<6;i++)
    {
       EP2FIFOBUF[0] = LSB(mycount);
       EP2FIFOBUF[1] = MSB(mycount);
@@ -115,12 +115,15 @@ void TD_Init(void)             // Called once at startup
       EP2BCL = 0x00;
    }
 
+   OEA = 0x01 << 7;
+   PA7 = 1;
 
     Rwuen = TRUE;                 // Enable remote-wakeup
 }
 
 void TD_Poll(void)             // Called repeatedly while the device is idle
 {  
+   PA7 = ~PA7;
 	// ...FX2 in high speed mode
 	if( EZUSB_HIGHSPEED( ) )
 	{ 
@@ -321,6 +324,8 @@ BOOL DR_SetInterface(void)       // Called when a Set Interface command is recei
 {
     BYTE	updateDisplay = TRUE;
     AlternateSetting = SETUPDAT[2];
+
+	PA7 = ~PA7;
 
 	// ...FX2 in high speed mode
 	if( EZUSB_HIGHSPEED( ) )
@@ -631,6 +636,7 @@ BOOL DR_SetInterface(void)       // Called when a Set Interface command is recei
 
 BOOL DR_GetInterface(void)       // Called when a Set Interface command is received
 {
+   PA7 = ~PA7;
    EP0BUF[0] = AlternateSetting;
    EP0BCH = 0;
    EP0BCL = 1;

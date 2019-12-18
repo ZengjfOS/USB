@@ -8,8 +8,8 @@ Group (Source Group 1)
 File 1,2,<.\dscr.a51><dscr.a51> 0x0 
 File 1,1,<.\fw.c><fw.c> 0x0 
 File 1,1,<.\CYStream.c><CYStream.c> 0x0 
-File 1,4,<..\..\Target\Lib\LP\EZUSB.LIB><EZUSB.LIB> 0x40D2AA36 
-File 1,2,<..\..\Target\Lib\LP\USBJmpTb.a51><USBJmpTb.a51> 0x0 
+File 1,4,<.\EZUSB.LIB><EZUSB.LIB> 0x5255FA6E 
+File 1,2,<.\USBJmpTb.a51><USBJmpTb.a51> 0x0 
 
 
 Options 1,0,0  // Target 'Target 1'
@@ -43,7 +43,7 @@ Options 1,0,0  // Target 'Target 1'
  HexSel=0
  MG32K=0
  TGMORE=0
- RunUsr 0 1 <..\..\Bin\hex2bix -i -f 0xC2 -o CYStream.iic CYStream.hex>
+ RunUsr 0 1 <hex2bix -i -f 0xC2 -o CYStream.iic CYStream.hex>
  RunUsr 1 0 <>
  BrunUsr 0 0 <>
  BrunUsr 1 0 <>
