@@ -53,7 +53,7 @@ void TD_Init( void )
 { // Called once at startup
 
   CPUCS = 0x02;	//12MHz operation , CPUCS[4:3] = 10.
-	IFCONFIG = 0x43; // Slave FIFO mode of FX2LP
+  IFCONFIG = 0x43; // Slave FIFO mode of FX2LP
    
   // EP2 512 BULK IN 4x
   SYNCDELAY;                    // see TRM section 15.14
@@ -61,13 +61,11 @@ void TD_Init( void )
   
   // EP4, EP6 and EP8 are not used in this implementation...
   SYNCDELAY;                    // 
-  EP6CFG = 0x7F;                // Clear Valid bit
-  
+  EP6CFG = 0x7F;                // Clear Valid bit 
   SYNCDELAY;                    // 
   EP4CFG &= 0x7F;               // clear valid bit
   SYNCDELAY;                    // 
-  
-	EP8CFG &= 0x7F;               // clear valid bit
+  EP8CFG &= 0x7F;               // clear valid bit
 
   SYNCDELAY;
   FIFORESET = 0x80;             // activate NAK-ALL to avoid race conditions
@@ -85,15 +83,16 @@ void TD_Init( void )
   SYNCDELAY;                     
   EP2FIFOCFG = 0x00;            // MANUAL MODE, 8 bit operation
 	
-	SYNCDELAY;                     
-  PINFLAGSAB = 0x0C;						//EP2FF
+  SYNCDELAY;                     
+  PINFLAGSAB = 0x0C;			//EP2FF
 
-  FIFOPINPOLAR = 0x07; // SLWR is configured as active HIGH and flag C(EP2EF) is made active high and flag B(EP2FF) is active high
+  FIFOPINPOLAR = 0x07; 			// SLWR is configured as active HIGH and flag C(EP2EF) is made active high and flag B(EP2FF) is active high
+
 
   SYNCDELAY;  
   PORTACFG=0x00;
   SYNCDELAY;
-  OEA=0x00;
+  OEA=0x00 | (0x01 << 7);
   SYNCDELAY;
 }
 
@@ -102,33 +101,39 @@ void TD_Poll( void )
 
   if(vendorCmdIssued)     // if Vendor command issued
   {
-			while(PA6);  // to insert the header when Frame Valid FV is low. So it will wait if FV is high
-		      	
-		  FIFORESET = 0x80; // activate NAK-ALL to avoid race conditions
-			SYNCDELAY;
-			EP2FIFOCFG = 0x00; //switching to manual mode
-			SYNCDELAY;
-			FIFORESET = 0x02; // Reset FIFO 2
-			SYNCDELAY;
-			FIFORESET = 0x00; //Release NAKALL
-			SYNCDELAY;
-			
-			EP2FIFOBUF[0]=0xFF;    // 5bytes of Header used by the Preview Utility to detect the Start of Transmission
-			EP2FIFOBUF[1]=0x00;
-			EP2FIFOBUF[2]=0x0F;
-			EP2FIFOBUF[3]=0x00;
-			EP2FIFOBUF[4]=0xFF;
-			
-			EP2BCH=0x02; 	//512 bytes committed
-			SYNCDELAY;
-			EP2BCL=0x00;
-			SYNCDELAY;
-      
-			EP2FIFOCFG = 0x08; //Switching to Auto mode
-			SYNCDELAY;		
 
-  		vendorCmdIssued=FALSE;     
-			}
+	// while(!PA6);  // to insert the header when Frame Valid FV is low. So it will wait if FV is high
+
+	if (PA6) {
+		PA7 = ~PA7;
+  /*		      	
+	    FIFORESET = 0x80; // activate NAK-ALL to avoid race conditions
+		SYNCDELAY;
+		EP2FIFOCFG = 0x00; //switching to manual mode
+		SYNCDELAY;
+		FIFORESET = 0x02; // Reset FIFO 2
+		SYNCDELAY;
+		FIFORESET = 0x00; //Release NAKALL
+		SYNCDELAY;
+		
+		EP2FIFOBUF[0]=0xFF;    // 5bytes of Header used by the Preview Utility to detect the Start of Transmission
+		EP2FIFOBUF[1]=0x00;
+		EP2FIFOBUF[2]=0x0F;
+		EP2FIFOBUF[3]=0x00;
+		EP2FIFOBUF[4]=0xFF;
+		
+		EP2BCH=0x02; 	//512 bytes committed
+		SYNCDELAY;
+		EP2BCL=0x00;
+		SYNCDELAY;
+  
+		EP2FIFOCFG = 0x08; //Switching to Auto mode
+		SYNCDELAY;		
+   */
+
+		vendorCmdIssued=FALSE;
+	}     
+  }
 }
 
 BOOL TD_Suspend( void )          
@@ -207,11 +212,10 @@ BOOL DR_SetFeature( void )
 
 BOOL DR_VendorCmnd( void )
 {
-	 
 	switch(SETUPDAT[1])
 	{ //TPM handle new commands
 		case 0xAA:					//Start Video 
-		
+			/*		
 			EZUSB_InitI2C();				// ...I2C initialization
 			
 			//0x48 = 0x90>>1
@@ -234,14 +238,19 @@ BOOL DR_VendorCmnd( void )
 			EZUSB_WriteI2C(0x48,0x03,REG14);EZUSB_WaitForEEPROMWrite(0x48);
 			EZUSB_WriteI2C(0x48,0x03,REG15);EZUSB_WaitForEEPROMWrite(0x48);
 			EZUSB_WriteI2C(0x48,0x03,REG16);EZUSB_WaitForEEPROMWrite(0x48);
-			
+			*/
+			PA7 = ~PA7;
 			vendorCmdIssued = TRUE;
 			break;
 
 		case 0xAC:				//Frame Synchronization
+			PA7 = ~PA7;
 			vendorCmdIssued = TRUE;
 			break;
+		default:
+			break;
 	}
+
   	return( FALSE );  
 }
 
