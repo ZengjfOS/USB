@@ -168,11 +168,17 @@ IFCONFIG = 0xCF; // for async? for sync?
   PINFLAGSCD = 0x08;			// FLAGC - EP2EF, FLAGD - indexed
   SYNCDELAY;
 
+/*
   PORTCCFG =0x00;                 // Write 0x00 to PORTCCFG to configure it as an I/O port
   OEC = 0x06;                     // Configure PC0 as input, PC1 as output and PC2 as output	
   PC1 =0;                         // initialize PC1 state to "low"
   PC2=0;					      // initialze PC2 state to "low"		 
+*/
 
+  OEA = 0x00 | (0x01 << 1) | (0x01 << 3) | (0x01 << 7);                     // Configure PC0 as input, PC1 as output and PC2 as output, PA7 as LED	
+  PA1 =0;                         // initialize PC1 state to "low"
+  PA3 =0;					      // initialze PC2 state to "low"	
+  PA7 =1;
   }
 
 void TD_Poll( void )
@@ -192,8 +198,8 @@ LED_Control();
 #endif
 
   // Handle IN data...
-	 PC2=1;		//asserting SLAVEREADY to show that slave firmware has started running
-   	 if (PC0 == 0 &&(!(EP68FIFOFLGS & 0x02)))       //if PC0/Txn_Over ==0 and EP6 is not empty,           
+	 PA3=1;		//asserting SLAVEREADY to show that slave firmware has started running
+   	 if (PA0 == 0 &&(!(EP68FIFOFLGS & 0x02)))       //if PC0/Txn_Over ==0 and EP6 is not empty,           
 		{												// meaning master has written data to the slave
            	EP6FIFOBUF[ 507 ] = 0x05; //edit the last five packets before committing
 			EP6FIFOBUF[ 508] = 0x04; 
@@ -207,8 +213,8 @@ LED_Control();
 			EP6BCL = 0x00;
 			SYNCDELAY;	
 
-			PC1 = ~PC1;                   //toggle PC0 to indicate that the buffer has been passed
-			while(  PC0 != 1);            //wait for PC0 to become high again. This is to prevent committing multiple packets at a single assertion of PC0
+			PA1 = ~PA1;                   //toggle PC0 to indicate that the buffer has been passed
+			while(  PA0 != 1);            //wait for PC0 to become high again. This is to prevent committing multiple packets at a single assertion of PC0
 			
 	  	}
 

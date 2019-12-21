@@ -97,9 +97,14 @@ BYTE AlternateSetting;              // Alternate settings
 BOOL in_enable = TRUE;             // flag to enable IN transfers
 BOOL enum_high_speed = FALSE;       // flag to let firmware know FX2 enumerated at high speed
 extern const char xdata FlowStates[36];
+/*
 #define Txn_Over PC0
 #define Pkt_Committed PC1
 #define SLAVEREADY	PC2   
+*/
+#define Txn_Over PA0
+#define Pkt_Committed PA1
+#define SLAVEREADY	PA2   
 bit b = 0;
 
 //-----------------------------------------------------------------------------
@@ -178,18 +183,20 @@ void TD_Init(void)             // Called once at startup
   SYNCDELAY;
   
   // IN endp's come up in the cpu/peripheral domain
-
+/*
 	PORTCCFG = 0x00;              //configure port C as an I/O port
   	OEC= 0xF9;                    // Txn_Over configured as output, Pkt_Committed configured as input,Slave Ready as input
     PC0=1;							
-	
-	OEA = 0xC0;                   // PA[7:6]=11 -> outputs (tied to peripheral FIFOADR[1:0] pins
+*/	
+	OEA = 0xC1;                   // PA[7:6]=11 -> outputs (tied to peripheral FIFOADR[1:0] pins, PA2 input, PA1 input, PA0 output
+/*
     PORTACFG |= 0x01;             // setting BIT 0 to configure PORTA_0 pin as alt. func INTO#
-  
+
   // enable INTO# external pin interrupt, used by peripheral to issue ZEROLENPKT
   EX0 = 1;                      // enable INT0# pin ISR
   IT0 = 1;                      // configure INT0# pin, edge trigger
-  
+*/
+
   // turn debug LED[3:0] off...
  
 }
