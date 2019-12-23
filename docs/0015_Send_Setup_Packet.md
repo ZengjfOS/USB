@@ -8,7 +8,9 @@
 
 * 使用`USB Control Center`直接发送`Setup Packet`；
 * 获取`AlternateSetting`的值；
-* `bRequest`：`GET_INTERFACE (0x0A)`；
+* `bRequest`：
+  * `GET_INTERFACE (0x0A)`；
+  * `SET_INTERFACE (0x0B)`；
 * 单片机实现方法：
   ```C
   BOOL DR_GetInterface(void)       // Called when a Set Interface command is received
@@ -20,4 +22,5 @@
   }
   ```
 * 测试验证：  
-  ![./images/Get_AlternateSetting.png](./images/Get_AlternateSetting.png)
+  ![./images/Get_AlternateSetting.png](./images/Get_AlternateSetting.png)  
+  ![images/Set_AlternateSetting.png](images/Set_AlternateSetting.png)

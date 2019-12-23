@@ -25,6 +25,7 @@
 
 ## 笔记文档
 
+* [0022_Vendor_Command.md](docs/0022_Vendor_Command.md)
 * [0021_GPIF.md](docs/0021_GPIF.md)
 * [0020_Keil.md](docs/0020_Keil.md)
 * [0019_Linux_Compile.md](docs/0019_Linux_Compile.md)

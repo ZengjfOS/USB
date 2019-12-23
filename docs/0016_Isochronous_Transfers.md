@@ -47,3 +47,33 @@ A special packet is the Start-of-Frame packet (SOF) that splits the USB bus into
 ## Isochronous OUT
 
 ![./images/Isochronous_Data_OUT.png](./images/Isochronous_Data_OUT.png)
+
+
+## Buffer Data
+
+初始化端点2的4个buffer中的数据
+
+```
+void TD_Init(void)             // Called once at startup
+{
+   [...省略]
+
+   // Prepare data
+   for (i=1;i<5;i++)
+   {
+      EP2FIFOBUF[0] = LSB(mycount);
+      EP2FIFOBUF[1] = MSB(mycount);
+      EP2FIFOBUF[2] = USBFRAMEL;
+      EP2FIFOBUF[3] = USBFRAMEH;
+      EP2FIFOBUF[4] = MICROFRAME;
+      for (j=5;j<1024;j++)
+      {
+         EP2FIFOBUF[j] = i;
+      }
+      EP2BCH = 0x02;
+      EP2BCL = 0x00;
+   }
+
+   [...省略]
+}
+```
