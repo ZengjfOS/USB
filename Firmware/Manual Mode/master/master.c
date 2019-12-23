@@ -104,7 +104,7 @@ extern const char xdata FlowStates[36];
 */
 #define Txn_Over PA0
 #define Pkt_Committed PA1
-#define SLAVEREADY	PA2   
+#define SLAVEREADY	PA3   
 bit b = 0;
 
 //-----------------------------------------------------------------------------
@@ -188,7 +188,9 @@ void TD_Init(void)             // Called once at startup
   	OEC= 0xF9;                    // Txn_Over configured as output, Pkt_Committed configured as input,Slave Ready as input
     PC0=1;							
 */	
-	OEA = 0xC1;                   // PA[7:6]=11 -> outputs (tied to peripheral FIFOADR[1:0] pins, PA2 input, PA1 input, PA0 output
+	OEA = 0xF1;                   // PA[7:6]=11 -> outputs (tied to peripheral FIFOADR[1:0] pins, PA2 input, PA1 input, PA0 output
+    PA4 = 0;
+    PA5 = 0;
 /*
     PORTACFG |= 0x01;             // setting BIT 0 to configure PORTA_0 pin as alt. func INTO#
 
@@ -243,6 +245,7 @@ LED_Control();
 		    EP2BCL = 0x00;       // commit edited pkt. to interface fifo
 		    SYNCDELAY; 
       }
+
 		    
 	       if ( ! (EP24FIFOFLGS & 0x02) )	  
 	       {
@@ -252,6 +255,7 @@ LED_Control();
 				{
 	   			if( GPIFTRIG & 0x80 )               // if GPIF interface IDLE
        			{  	  
+
          			 PERIPH_FIFOADR0 = 0;               // FIFOADR[1:0]=10 - point to peripheral EP6 
          			 PERIPH_FIFOADR1 = 1;               
         			  SYNCDELAY;            
@@ -274,6 +278,7 @@ LED_Control();
      				 SYNCDELAY;
         			 GPIFTRIG = GPIFTRIGWR | GPIF_EP2;  // launch GPIF FIFO WRITE Transaction from EP2 FIFO
         			 SYNCDELAY;
+			   		 PA4 = 1;;
 	   				 while( !( GPIFTRIG & 0x80 ) )      // poll GPIFTRIG.7 GPIF Done bit
        				 {
       				    ;
@@ -582,8 +587,14 @@ BOOL DR_VendorCmnd(void)
 	  SYNCDELAY;
 	  EP0BUF[1] = GPIFREADYSTAT;
  	  SYNCDELAY;
+	  EP0BUF[2] = SLAVENOTFULL;
+	  SYNCDELAY;
+	  EP0BUF[3] = Txn_Over;
+ 	  SYNCDELAY;
+	  EP0BUF[4] = GPIFTRIG;
+ 	  SYNCDELAY;
   	  EP0BCH = 0;
-	  EP0BCL = 2;
+	  EP0BCL = 5;
 	  EP0CS |= bmHSNAK;
 	  break;
     }

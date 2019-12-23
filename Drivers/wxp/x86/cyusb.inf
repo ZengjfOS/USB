@@ -1,0 +1,111 @@
+; Installation INF for the Cypress Generic USB Driver for Windows XP
+; Processor support for x86 based platforms.
+;
+; (c) Copyright 2007 Cypress Semiconductor Corporation
+;
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=USB
+ClassGUID={36FC9E60-C465-11CF-8056-444553540000}
+provider=%CYUSB_Provider%
+CatalogFile=CYUSB.cat
+DriverVer=08/17/2007,3.01.0000.2
+
+[SourceDisksNames]
+1=%CYUSB_Install%,,,
+
+[SourceDisksFiles]
+CYUSB.sys = 1
+
+[DestinationDirs]
+CYUSB.Files.Ext = 10,System32\Drivers
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[Manufacturer]
+%CYUSB_Provider%=Device
+
+[Device]
+;%VID_XXXX&PID_XXXX.DeviceDesc%=CyUsb, USB\VID_XXXX&PID_XXXX
+%VID_04b4&PID_0082.DeviceDesc%=CyUsb, USB\VID_04b4&PID_0082
+%VID_04B4&PID_07B3.DeviceDesc%=CyUsb, USB\VID_04B4&PID_07B3
+%VID_04B4&PID_07B4.DeviceDesc%=CyUsb, USB\VID_04B4&PID_07B4
+%VID_0547&PID_1002.DeviceDesc%=CyUsb, USB\VID_0547&PID_1002 
+%VID_04B4&PID_1003.DeviceDesc%=CyUsb, USB\VID_04B4&PID_1003 
+%VID_04B4&PID_1004.DeviceDesc%=CyUsb, USB\VID_04B4&PID_1004 
+%VID_04B4&PID_1008.DeviceDesc%=CyUsb, USB\VID_04B4&PID_1008 
+%VID_04b4&PID_4617.DeviceDesc%=CyUsb, USB\VID_04b4&PID_4617
+%VID_04b4&PID_4618.DeviceDesc%=CyUsb, USB\VID_04b4&PID_4618
+%VID_04b4&PID_4624.DeviceDesc%=CyUsb, USB\VID_04b4&PID_4624
+%VID_04b4&PID_6473.DeviceDesc%=CyUsb, USB\VID_04b4&PID_6473
+%VID_04b4&PID_6560.DeviceDesc%=CyUsb, USB\VID_04b4&PID_6560
+%VID_04b4&PID_6823.DeviceDesc%=CyUsb, USB\VID_04b4&PID_6823
+%VID_04b4&PID_6826.DeviceDesc%=CyUsb, USB\VID_04b4&PID_6826
+%VID_04B4&PID_6830.DeviceDesc%=CyUsb, USB\VID_04B4&PID_6830
+%VID_04B4&PID_8613.DeviceDesc%=CyUsb, USB\VID_04B4&PID_8613
+%VID_04B4&PID_2008.DeviceDesc%=CyUsb, USB\VID_04B4&PID_2008
+%VID_04B4&PID_2009.DeviceDesc%=CyUsb, USB\VID_04B4&PID_2009
+[CYUSB.NT]
+CopyFiles=CYUSB.Files.Ext
+AddReg=CyUsb.AddReg
+
+[CYUSB.NT.HW]
+AddReg=CYUSB.AddReg.Guid
+
+[CYUSB.NT.Services]
+Addservice = CYUSB,2,CYUSB.AddService
+
+[CYUSB.AddReg]
+; Deprecating - do not use in new apps to identify a CYUSB driver
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,CYUSB.sys
+; You may optionally include a check for DriverBase in your application to check for a CYUSB driver
+HKR,,DriverBase,,CYUSB.sys
+HKR,"Parameters","MaximumTransferSize",0x10001,4096
+HKR,"Parameters","DebugLevel",0x10001,2
+HKR,,FriendlyName,,%CYUSB_Description%
+
+[CYUSB.AddService]
+DisplayName    = %CYUSB_Description%
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %10%\System32\Drivers\CYUSB.sys
+AddReg         = CYUSB.AddReg
+LoadOrderGroup = Base
+
+[CYUSB.Files.Ext]
+CYUSB.sys
+
+[CYUSB.AddReg.Guid]
+HKR,,DriverGUID,,%CYUSB.GUID%
+
+[Strings]
+CYUSB_Provider    = "Cypress"
+CYUSB_Company     = "Cypress Semiconductor Corporation"
+CYUSB_Description = "Cypress Generic USB Driver"
+CYUSB_DisplayName = "Cypress USB Generic"
+CYUSB_Install     = "Cypress CYUSB Driver Installation Disk"
+VID_XXXX&PID_XXXX.DeviceDesc="Cypress USB Generic Driver (3.01.0000.2)"
+VID_04b4&PID_0082.DeviceDesc="SX2 Board (3.01.0000.2)"
+VID_04b4&PID_07b3.DeviceDesc="enCoRe V LP Bridge (Bulk Example) (3.01.0000.2)"
+VID_04b4&PID_07b4.DeviceDesc="enCoRe V LP Bridge (ISOC Example) (3.01.0000.2)"
+VID_0547&PID_1002.DeviceDesc="EZ-USB Bulkloop Device (3.01.0000.2)"
+VID_04B4&PID_1003.DeviceDesc="CYStream Device (3.01.0000.2)"
+VID_04B4&PID_1004.DeviceDesc="Bulkloop Device"
+VID_04B4&PID_1008.DeviceDesc="Cypress EZ-USB Vendor Command (3.01.0000.2)"
+VID_04b4&PID_4617.DeviceDesc="NX2LP 2K NAND Flash Reference Design (3.01.0000.2)"
+VID_04b4&PID_4618.DeviceDesc="NX2LP NAND Flash Reference Design (3.01.0000.2)"
+VID_04b4&PID_4624.DeviceDesc="NX2LP-Flex Development Board (3.01.0000.2)"
+VID_04b4&PID_6473.DeviceDesc="EZ-USB FX1 Chip (3.01.0000.2)"
+VID_04b4&PID_6560.DeviceDesc="HX2LP Kit (3.01.0000.2)"
+VID_04b4&PID_6823.DeviceDesc="NX2LP NAND Flash Controller (3.01.0000.2)"
+VID_04b4&PID_6826.DeviceDesc="Antioch Test Bed (3.01.0000.2)"
+VID_04B4&PID_6830.DeviceDesc="Cypress AT2LP (3.01.0000.2)"
+VID_04B4&PID_8613.DeviceDesc="Cypress FX2 - No EEPROM (3.01.0000.2)"
+VID_04B4&PID_2008.DeviceDesc="Slave FX2LP"
+VID_04B4&PID_2009.DeviceDesc="Master FX2LP"
+CYUSB.GUID="{AE18AA60-7F6A-11d4-97DD-00010229B959}"
+CYUSB_Unused      = "."
