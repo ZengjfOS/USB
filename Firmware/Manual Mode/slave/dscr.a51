@@ -43,7 +43,7 @@ DeviceDscr:
       db   00H                  ;; Device sub-sub-class
       db   64                   ;; Maximum packet size
       dw   0B404H                ;; Vendor ID
-      dw   0820H                ;; Product ID (Sample Device)
+      dw   0410H                ;; Product ID (Sample Device)
       dw   0000H                ;; Product version ID
       db   1                    ;; Manufacturer string index
       db   2                    ;; Product string index
@@ -180,22 +180,18 @@ StringDscr2:
       db   'X',00
       db   '2',00
       db   ' ',00
-      db   'G',00
-      db   'P',00
-      db   'I',00
-      db   'F',00
+      db   'B',00
+      db   'a',00
+      db   'c',00
+      db   'k',00
       db   ' ',00
       db   't',00
       db   'o',00
       db   ' ',00
-      db   'E',00
-      db   'x',00
-      db   't',00
-      db   ' ',00
-      db   'F',00
-      db   'I',00
-      db   'F',00
-      db   'O',00
+      db   'B',00
+      db   'a',00
+      db   'c',00
+      db   'k',00
       db   ' ',00
       db   'E',00
       db   'x',00
@@ -205,31 +201,11 @@ StringDscr2:
       db   'l',00
       db   'e',00
       db   ' ',00
-      db   'u',00
-      db   's',00
-      db   'i',00
-      db   'n',00
-      db   'g',00
-      db   ' ',00
       db   'S',00
-      db   'i',00
-      db   'n',00
-      db   'g',00
       db   'l',00
+      db   'a',00
+      db   'v',00
       db   'e',00
-      db   ' ',00
-      db   'T',00
-      db   'r',00
-      db   'a',00
-      db   'n',00
-      db   's',00
-      db   'a',00
-      db   'c',00
-      db   't',00
-      db   'i',00
-      db   'o',00
-      db   'n',00
-      db   's',00
 StringDscr2End:
 
 UserDscr:      
