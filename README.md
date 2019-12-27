@@ -25,6 +25,8 @@
 
 ## 笔记文档
 
+* [0024_USB_Keyboard.md](docs/0024_USB_Keyboard.md)
+* [0023_USB_Camera_UVC.md](docs/0023_USB_Camera_UVC.md)
 * [0022_Vendor_Command.md](docs/0022_Vendor_Command.md)
 * [0021_GPIF.md](docs/0021_GPIF.md)
 * [0020_Keil.md](docs/0020_Keil.md)
