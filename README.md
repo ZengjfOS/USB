@@ -15,4 +15,5 @@
 
 ## 笔记文档
 
+* [0002_USB_Camera.md](docs/0002_USB_Camera.md)
 * [0001_Install.md](docs/0001_Install.md)
